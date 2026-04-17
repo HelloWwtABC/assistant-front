@@ -239,56 +239,58 @@ export function RagQaPage() {
       description="用于演示基于知识库检索的会话问答、引用来源展示与上下文管理能力"
     >
       <PageStatus error={error} onRetry={() => void loadSessions(activeSessionId)}>
-        <Row gutter={[16, 16]} className="qa-layout">
-          <Col xs={24} xl={7}>
-            <Card className="qa-panel qa-panel--sessions">
-              <SessionList
-                sessions={filteredSessions}
-                activeSessionId={activeSessionId}
-                keyword={sessionKeyword}
-                loading={pageLoading}
-                creating={creating}
-                onKeywordChange={setSessionKeyword}
-                onCreate={() => void handleCreateSession()}
-                onSelect={setActiveSessionId}
-                onDelete={(sessionId) => void handleDeleteSession(sessionId)}
-              />
-            </Card>
-          </Col>
+        <div className="qa-page">
+          <Row gutter={[16, 16]} className="qa-layout">
+            <Col xs={24} xl={7}>
+              <Card className="qa-panel qa-panel--sessions">
+                <SessionList
+                  sessions={filteredSessions}
+                  activeSessionId={activeSessionId}
+                  keyword={sessionKeyword}
+                  loading={pageLoading}
+                  creating={creating}
+                  onKeywordChange={setSessionKeyword}
+                  onCreate={() => void handleCreateSession()}
+                  onSelect={setActiveSessionId}
+                  onDelete={(sessionId) => void handleDeleteSession(sessionId)}
+                />
+              </Card>
+            </Col>
 
-          <Col xs={24} xl={17}>
-            <div className="qa-chat-layout">
-              <Card className="qa-panel qa-panel--chat-header">
-                <div className="qa-chat-layout__header">
-                  <Typography.Title level={5} style={{ margin: 0 }}>
-                    {activeSessionDetail?.title ?? '请选择会话开始问答'}
-                  </Typography.Title>
-                  <Typography.Text type="secondary">
-                    在当前会话中输入问题，系统会基于 mock 知识库返回答案，并展示引用来源片段。
-                  </Typography.Text>
+            <Col xs={24} xl={17}>
+              <Card className="qa-panel qa-panel--chat-shell">
+                <div className="qa-chat-shell">
+                  <div className="qa-chat-shell__header">
+                    <Typography.Title level={5} style={{ margin: 0 }}>
+                      {activeSessionDetail?.title ?? '请选择会话开始问答'}
+                    </Typography.Title>
+                    <Typography.Text type="secondary">
+                      在当前会话中输入问题，系统会基于 mock 知识库返回答案，并展示引用来源片段。
+                    </Typography.Text>
+                  </div>
+
+                  <div className="qa-chat-shell__messages">
+                    <ChatMessageList
+                      messages={activeSessionDetail?.messages ?? []}
+                      loading={Boolean(activeSessionId) && sessionLoading}
+                      thinking={thinking}
+                    />
+                  </div>
+
+                  <div className="qa-chat-shell__composer">
+                    <ChatComposer
+                      disabled={sending}
+                      sending={sending}
+                      hasActiveSession={Boolean(activeSessionId)}
+                      onSend={handleSendMessage}
+                      onClear={handleClearContext}
+                    />
+                  </div>
                 </div>
               </Card>
-
-              <Card className="qa-panel qa-panel--chat qa-panel--chat-stream">
-                <ChatMessageList
-                  messages={activeSessionDetail?.messages ?? []}
-                  loading={Boolean(activeSessionId) && sessionLoading}
-                  thinking={thinking}
-                />
-              </Card>
-
-              <Card className="qa-panel qa-panel--composer">
-                <ChatComposer
-                  disabled={sending}
-                  sending={sending}
-                  hasActiveSession={Boolean(activeSessionId)}
-                  onSend={handleSendMessage}
-                  onClear={handleClearContext}
-                />
-              </Card>
-            </div>
-          </Col>
-        </Row>
+            </Col>
+          </Row>
+        </div>
       </PageStatus>
     </PageContainer>
   );

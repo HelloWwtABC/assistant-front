@@ -38,10 +38,18 @@ export const documentsApi = {
       return mockRequest(() => mockUploadDocument(payload));
     }
 
-    return request.post<DocumentDetail, UploadDocumentPayload>(
-      '/documents/upload',
-      payload,
-    );
+    const formData = new FormData();
+    formData.append('knowledgeBaseId', payload.knowledgeBaseId);
+    formData.append('knowledgeBaseName', payload.knowledgeBaseName);
+    formData.append('uploader', payload.uploader);
+
+    if (payload.remark) {
+      formData.append('remark', payload.remark);
+    }
+
+    formData.append('file', payload.file);
+
+    return request.post<DocumentDetail, FormData>('/documents/upload', formData);
   },
   deleteDocument(documentId: string) {
     if (appEnv.useMock) {

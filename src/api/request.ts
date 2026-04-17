@@ -30,7 +30,7 @@ function redirectToLogin() {
 
 const service = axios.create({
   baseURL: appEnv.apiBaseUrl,
-  timeout: 15000,
+  timeout: 50000,
 });
 
 service.interceptors.request.use((config) => {

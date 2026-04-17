@@ -28,7 +28,11 @@ export function ChatComposer({
   };
 
   return (
-    <Form<ChatComposerFormValues> form={form} onFinish={handleSubmit}>
+    <Form<ChatComposerFormValues>
+      form={form}
+      onFinish={handleSubmit}
+      className="qa-composer-form"
+    >
       <div className="qa-composer">
         <Form.Item
           name="question"
@@ -46,7 +50,9 @@ export function ChatComposer({
             placeholder="请输入你想基于知识库检索回答的问题"
             disabled={disabled || !hasActiveSession}
             maxLength={500}
-            showCount
+            showCount={{
+              formatter: ({ count, maxLength }) => `${count}/${maxLength ?? 500}`,
+            }}
           />
         </Form.Item>
 

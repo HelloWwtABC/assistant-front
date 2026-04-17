@@ -274,17 +274,181 @@ a {
   gap: 16px;
 }
 
+.sessions-filter .ant-form-item {
+  margin-bottom: 0;
+}
+
+.sessions-table__snippet {
+  display: block;
+  overflow: hidden;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sessions-detail-drawer .ant-drawer-content,
+.sessions-detail-drawer .ant-drawer-body {
+  min-height: 0;
+  height: 100%;
+}
+
+.sessions-detail-drawer .ant-drawer-body {
+  padding: 20px 24px;
+  overflow: hidden;
+}
+
+.sessions-detail-drawer__body {
+  min-height: 0;
+  height: 100%;
+}
+
+.sessions-detail-drawer__body .page-status-card {
+  min-height: 320px;
+}
+
+.sessions-detail-drawer__content {
+  display: flex;
+  min-height: 0;
+  height: 100%;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sessions-detail-drawer__messages-card {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+}
+
+.sessions-detail-drawer__messages-card .ant-card-body {
+  display: flex;
+  min-height: 0;
+  height: 100%;
+  flex: 1;
+  padding: 16px 20px;
+}
+
+.sessions-detail-drawer__messages-scroll {
+  min-height: 0;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 4px;
+}
+
+.sessions-message-history__card {
+  border: 1px solid #eef2f7;
+}
+
+.sessions-message-history__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sessions-message-history__content {
+  margin-bottom: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.sessions-message-history__citations {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px dashed #e5e7eb;
+}
+
+.sessions-message-history__citation-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #fafbfc;
+}
+
+.observability-filter .ant-form-item {
+  margin-bottom: 0;
+}
+
+.observability-panel__section {
+  margin-top: 16px;
+}
+
+.observability-table__summary {
+  display: block;
+  overflow: hidden;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.observability-detail-drawer .ant-drawer-content,
+.observability-detail-drawer .ant-drawer-body {
+  min-height: 0;
+  height: 100%;
+}
+
+.observability-detail-drawer .ant-drawer-body {
+  padding: 20px 24px;
+  overflow: hidden;
+}
+
+.observability-detail-drawer__body {
+  min-height: 0;
+  height: 100%;
+}
+
+.observability-detail-drawer__body .page-status-card {
+  min-height: 320px;
+}
+
+.observability-detail-drawer__content {
+  display: flex;
+  min-height: 0;
+  height: 100%;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 4px;
+}
+
+.tools-grid .ant-col {
+  display: flex;
+}
+
+.tool-card {
+  width: 100%;
+}
+
+.tool-card .ant-card-head-title {
+  white-space: normal;
+}
+
+.tool-card__result {
+  margin-top: 16px;
+}
+
 .qa-panel {
   border-radius: 12px;
 }
 
+.qa-page {
+  min-height: 0;
+}
+
 .qa-layout {
-  height: calc(100vh - 250px);
-  min-height: 640px;
+  height: clamp(620px, calc(100vh - 220px), 760px);
+  min-height: 0;
+  overflow: hidden;
 }
 
 .qa-layout > .ant-col {
   display: flex;
+  max-height: 100%;
   min-height: 0;
 }
 
@@ -299,10 +463,21 @@ a {
   min-height: 0;
   height: 100%;
   width: 100%;
+  padding: 20px;
 }
 
-.qa-panel--chat {
+.qa-panel--chat-shell {
+  display: flex;
+  flex: 1;
   min-height: 0;
+}
+
+.qa-panel--chat-shell .ant-card-body {
+  display: flex;
+  min-height: 0;
+  height: 100%;
+  width: 100%;
+  padding: 20px 24px;
 }
 
 .qa-session-list__loading,
@@ -333,6 +508,7 @@ a {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
+  padding-right: 4px;
 }
 
 .qa-session-list__empty {
@@ -351,6 +527,7 @@ a {
   cursor: pointer;
   padding: 14px 12px;
   border-radius: 10px;
+  overflow: hidden;
   transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
@@ -363,6 +540,7 @@ a {
   min-width: 0;
   flex: 1;
   gap: 12px;
+  overflow: hidden;
 }
 
 .qa-session-item__icon {
@@ -377,13 +555,15 @@ a {
   flex: 1;
   flex-direction: column;
   gap: 8px;
+  overflow: hidden;
 }
 
 .qa-session-item__title {
   display: block;
   overflow: hidden;
   min-width: 0;
-  word-break: break-all;
+  max-width: 100%;
+  overflow-wrap: anywhere;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -393,7 +573,8 @@ a {
   overflow: hidden;
   min-width: 0;
   margin-bottom: 0;
-  word-break: break-word;
+  max-width: 100%;
+  overflow-wrap: anywhere;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
@@ -408,37 +589,36 @@ a {
   flex: 0 0 auto;
 }
 
-.qa-chat-layout {
+.qa-chat-shell {
   display: flex;
   min-height: 0;
   height: 100%;
   width: 100%;
   flex-direction: column;
-  gap: 16px;
 }
 
-.qa-panel--chat-header,
-.qa-panel--composer {
-  flex: 0 0 auto;
-}
-
-.qa-chat-layout__header {
+.qa-chat-shell__header {
   display: flex;
+  flex: 0 0 auto;
   flex-direction: column;
   gap: 4px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f0f0f0;
 }
 
-.qa-panel--chat-stream {
-  display: flex;
-  flex: 1;
-  min-height: 0;
-}
-
-.qa-panel--chat-stream .ant-card-body {
+.qa-chat-shell__messages {
   display: flex;
   min-height: 0;
   flex: 1;
-  padding: 20px 24px;
+  overflow: hidden;
+  padding: 16px 0;
+}
+
+.qa-chat-shell__composer {
+  display: flex;
+  flex: 0 0 auto;
+  padding-top: 16px;
+  border-top: 1px solid #f0f0f0;
 }
 
 .qa-message-scroll {
@@ -446,6 +626,7 @@ a {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
+  padding-right: 4px;
 }
 
 .qa-message-list {
@@ -484,6 +665,40 @@ a {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 100%;
+}
+
+.qa-composer-form,
+.qa-composer-form .ant-form-item,
+.qa-composer-form .ant-form-item-control,
+.qa-composer-form .ant-form-item-control-input,
+.qa-composer-form .ant-form-item-control-input-content {
+  width: 100%;
+}
+
+.qa-composer-form .ant-input-textarea {
+  display: block;
+  width: 100%;
+}
+
+.qa-composer-form .ant-input-textarea-show-count {
+  position: relative;
+}
+
+.qa-composer-form .ant-input-textarea-show-count::after {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  margin: 0;
+  padding-left: 8px;
+  color: #98a2b3;
+  font-size: 12px;
+  line-height: 1;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), #ffffff 28%);
+}
+
+.qa-composer-form .ant-input-textarea-show-count .ant-input {
+  padding-bottom: 28px;
 }
 
 .qa-composer__actions {
@@ -509,6 +724,7 @@ a {
   .qa-layout {
     height: auto;
     min-height: 0;
+    overflow: visible;
   }
 }
 
